@@ -1,0 +1,43 @@
+npx create-react-app . 
+npx create-react-app fileName
+npm start (OR) npm run build if you want to do it in optimise Way/if you want to deploy it later you can use 
+
+add bootstarp css and js in public/index.html 
+
+for props always write import PropTypes from 'prop-types';
+
+Proptypes i.e to restrict 
+
+Default prop is written inside the react component func 
+
+import React ,{useState} from 'react'; 
+
+whenever we use onChange  a func runs but with help of that we get a event object event.target.value 
+
+PROP:
+    -first make a component
+    -write (props) in the func
+    -App.js 
+        import the component 
+        <component SMTH=""/> 
+    -component File 
+        {props.SMTH}
+    -use PropTypes for restrictng 
+        need to import PropTypes from 'prop-types';
+    -can do deafult props too
+
+
+
+useState: Example of making a state of Alert 
+    -import React ,{useState} from 'react';
+    -const[alert ,setAlert ]=useState()                   //This is the object now. alert is a state variable. This is generic way of useState Text is the original form while if we hv to change the original form we can use SetText 
+    -write a Method to set(change the state) of the alert like:
+        const showAlert =(message,typeOfAlert) =>{          //setAlert it takes 2 parameters the msg and what's its type i.e success/fail
+			setAlert({
+				msg: message,
+				type: typeOfAlert
+		    });
+	    }
+    -u can pass it to a component using (props) {props.text}        //FOR SIMPLE PROP NO FUNC 
+    -u can pass to a component using (props) 
+    
