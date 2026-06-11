@@ -30,14 +30,18 @@ PROP:
 
 useState: Example of making a state of Alert 
     -import React ,{useState} from 'react';
-    -const[alert ,setAlert ]=useState()                   //This is the object now. alert is a state variable. This is generic way of useState Text is the original form while if we hv to change the original form we can use SetText 
-    -write a Method to set(change the state) of the alert like:
+    -const[alert ,setAlert ]=useState()                   //This is the object now. alert is a state variable while setAlert is the method to set(change the state) of the alert .This is generic way of useState Text is the original form while if we hv to change the original form we can use SetText 
+    -write a func:
         const showAlert =(message,typeOfAlert) =>{          //setAlert it takes 2 parameters the msg and what's its type i.e success/fail
 			setAlert({
 				msg: message,
 				type: typeOfAlert
 		    });
 	    }
-    -u can pass it to a component using (props) {props.text}        //FOR SIMPLE PROP NO FUNC 
-    -u can pass to a component using (props) 
-    
+    -now to use this parameters in the component file we can use 
+        {props.alert.type}
+        {props.alert.msg}
+    -we have to pass the showAlert func to the component files like (TextForm) as we update or use any feature it shows alerts like if uppercase was clicked then it will show a alert that it was success
+        we can pass it in App.js in that component tag itself <component func={}/>
+    -NOTE:
+        if was ever pass the useState null at start then always write this props.smth && ..... why if the props.smth is null then 2nd will not work as using AND operator

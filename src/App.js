@@ -13,14 +13,18 @@ import Alert from './components/Alert';
 
 function App() {
 
-		// const [alert, setAlert] = useState(null);
+		const [alert, setAlert] = useState(null);
 
-		// const showAlert =(message,typeOfAlert) =>{
-		// 	setAlert({
-		// 		msg: message,
-		// 		type: typeOfAlert
-		// 	});
-		// }
+		//will pass this function as a prop to the navbar component and will call it from there when the user clicks on the toggle button and also for TextForm component when the user clicks on the buttons to show the alert message
+		const showAlert =(message,typeOfAlert) =>{	// this is the function which has two parameters message and typeOfAlert which will be used to set the alert state variable
+			setAlert({
+				msg: message,
+				type: typeOfAlert
+			});
+			setTimeout(() => {	// this will set the alert state variable to null after 3 seconds so that the alert message will disappear after 3 seconds
+				setAlert(null);
+			}, 3000);	
+		}
 
 	const [DarkMode, setDarkMode] = useState('light');
 	const toggleMode = () =>{
@@ -28,28 +32,29 @@ function App() {
 			setDarkMode('light');
 			document.body.style.backgroundColor = 'white';
 			document.body.style.color = 'black';
-
-			//setAlert("Light mode has been enabled", "success");
+			showAlert("Light mode has been enabled", "success");
+			document.title="TextUtils - Light Mode";
 		} else {
 			setDarkMode('dark');
 			document.body.style.backgroundColor = 'black';
 			document.body.style.color 	= 'white';
-			//setAlert("Dark mode has been enabled", "success");
+			showAlert("Dark mode has been enabled", "success");
+			document.title="TextUtils - Dark Mode";
 		}
 	};
 	return (
 	<>
-	<Navbar title="TextUtils" about="About" mode={DarkMode} toggleMode={toggleMode}/>
+		<Navbar title="TextUtils" about="About" mode={DarkMode} toggleMode={toggleMode}/>
 
-	<Alert alert="This is a sample alert"/>
+		<Alert alert={alert}/> {/* alert is a state variable which is being passed as a prop */}
 
-	<div className="container">
-		<TaskForm heading="Enter the text:" mode={DarkMode}/>
-	</div>
+		<div className="container">
+			<TaskForm heading="Enter the text:" mode={DarkMode} showAlert={showAlert}/>
+		</div>
 
-	<About mode={DarkMode}/>
+		<About mode={DarkMode}/>
 
-	</>
+		</>
 	);
 }
 export default App;

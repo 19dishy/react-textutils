@@ -8,10 +8,12 @@ export default function TextForm(props) {
 	}
 	const handleUpCase = () =>{
 		setText(text.toUpperCase());
+		props.showAlert("Converted to Uppercase", "success");	// this is the function which is being passed as a prop from the App component and is being called here when the user clicks on the button to show the alert message
 	}
 
 	const handleLowCase = () =>{
 		setText(text.toLowerCase());
+		props.showAlert("Converted to Lowercase", "success");
 	};
 
 	const handleOnChange = (event) =>{
@@ -20,14 +22,17 @@ export default function TextForm(props) {
 
 	const handleRev = () =>{
 		setText(text.split("").reverse().join(""));
+		props.showAlert("Text reversed", "success");	
 	};
 
 	const handleClear =() =>{
 		setText("");
+		props.showAlert("Text cleared", "success");
 	};
 
 	const handleCopy = () =>{
 		navigator.clipboard.writeText(text);
+		props.showAlert("Text copied to clipboard", "success");
 	};
 	const [text, setText] = useState("");
 
@@ -50,7 +55,7 @@ export default function TextForm(props) {
 
         <div className="container my-3">
             <h2>Your Text Summary</h2>
-            <p>{text.split(" ").length} words and {text.length} characters</p>
+            <p>{text.split(" ").length - 1} words and {text.length} characters</p>
             <p>Time to read: {text.split(" ").length * 0.008} minutes</p>
             <h2>Preview</h2>
             <p>{text}</p>
