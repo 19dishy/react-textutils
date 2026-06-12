@@ -10,6 +10,12 @@ import About from './components/About';
 import Navbar from './components/Navbar';
 import TaskForm from './components/TextForm';
 import Alert from './components/Alert';
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Link
+} from "react-router-dom";
 
 function App() {
 
@@ -43,17 +49,20 @@ function App() {
 		}
 	};
 	return (
-	<>
+	<>	
+	<Router>
 		<Navbar title="TextUtils" about="About" mode={DarkMode} toggleMode={toggleMode}/>
-
 		<Alert alert={alert}/> {/* alert is a state variable which is being passed as a prop */}
 
-		<div className="container">
-			<TaskForm heading="Enter the text:" mode={DarkMode} showAlert={showAlert}/>
-		</div>
+		<Routes>
+          <Route exact path="/about" element={<About mode={DarkMode}/>} />    
 
-		<About mode={DarkMode}/>
-
+          <Route exact path="/"  element={
+			<div className="container">
+				<TaskForm heading="Enter the text:" mode={DarkMode} showAlert={showAlert}/>
+			</div>}/>
+        </Routes>
+	</Router>
 		</>
 	);
 }
